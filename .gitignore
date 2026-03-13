@@ -1,0 +1,15 @@
+# Godot 4+ specific ignores
+.godot/
+*.translation
+
+# Imported translations (if you generate them from CSV)
+*.csv.import
+
+# Exported games
+/export/
+/build/
+/builds/
+
+# OS/Desktop junk
+.DS_Store
+Thumbs.db
