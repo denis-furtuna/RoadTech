@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dfq4hok1smhtc"]
+
+[ext_resource type="Script" uid="uid://bvevftd5fx4u0" path="res://scripts/key.gd" id="1_yk2u2"]
+[ext_resource type="Texture2D" uid="uid://b1u0ywr07dn27" path="res://Assets/images/usi/sprite_sheet_chest_key.png" id="2_fttkb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fttkb"]
+radius = 28.0
+height = 86.0
+
+[node name="key" type="StaticBody2D" unique_id=843254547]
+script = ExtResource("1_yk2u2")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=841744971]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_fttkb")
+region_enabled = true
+region_rect = Rect2(256, 0, 256, 256)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1472056248]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1591750570]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_fttkb")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
