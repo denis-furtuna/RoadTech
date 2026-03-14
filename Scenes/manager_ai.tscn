@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c0akkahfhspeu"]
+
+[ext_resource type="Script" uid="uid://or385yc6vq5y" path="res://manager_ai.gd" id="1_ychix"]
+
+[node name="ManagerAI" type="Node2D" unique_id=1300364889]
+script = ExtResource("1_ychix")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1572649585]
