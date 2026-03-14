@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ciyqdkmuvsmb1"]
 
-[ext_resource type="Script" uid="uid://stj8s0faem2k" path="res://UI/carte_ui.gd" id="1_nbrqx"]
-[ext_resource type="FontFile" uid="uid://capvtgl0b5ke" path="res://Assets/Minecraftia-Regular.ttf" id="2_vxdr6"]
-[ext_resource type="Texture2D" uid="uid://caq86tpofofc2" path="res://Assets/carte/UIBook.png" id="2_xnnwa"]
+[ext_resource type="Script" uid="uid://stj8s0faem2k" path="res://scripts/carte_ui.gd" id="1_nbrqx"]
+[ext_resource type="FontFile" uid="uid://ccbt22v7esii8" path="res://Assets/Minecraftia-Regular.ttf" id="2_vxdr6"]
+[ext_resource type="Texture2D" uid="uid://8hrlk6bwgbq6" path="res://Assets/carte/UIBook.png" id="2_xnnwa"]
 
 [node name="CarteUi" type="Control" unique_id=1937088577]
 layout_mode = 3

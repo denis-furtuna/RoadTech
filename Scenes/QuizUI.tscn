@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://dp2d8oyb5wy0j"]
 
-[ext_resource type="FontFile" uid="uid://capvtgl0b5ke" path="res://Assets/Minecraftia-Regular.ttf" id="1_62ytw"]
-[ext_resource type="Script" uid="uid://dtop5l073umod" path="res://UI/quiz_ui.gd" id="1_muifo"]
-[ext_resource type="Texture2D" uid="uid://cq6r682v4trn8" path="res://Assets/quiz/cufar.png" id="2_jf5e6"]
+[ext_resource type="FontFile" uid="uid://ccbt22v7esii8" path="res://Assets/Minecraftia-Regular.ttf" id="1_62ytw"]
+[ext_resource type="Script" uid="uid://dtop5l073umod" path="res://scripts/quiz_ui.gd" id="1_muifo"]
+[ext_resource type="Texture2D" uid="uid://bg4hli3ngojix" path="res://Assets/quiz/cufar.png" id="2_jf5e6"]
 
 [node name="QuizUi" type="Control" unique_id=717048610]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
