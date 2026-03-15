@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://u8m7unq132kc"]
+
+[ext_resource type="Script" uid="uid://xgyyg0uoognr" path="res://scripts/quiz_timer.gd" id="1_u6m22"]
+
+[node name="QuizTimer" type="ProgressBar" unique_id=1098964586]
+offset_right = 4.0
+offset_bottom = 27.0
+show_percentage = false
+script = ExtResource("1_u6m22")
+
+[node name="Timer" type="Timer" parent="." unique_id=156650097]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

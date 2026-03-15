@@ -8,23 +8,19 @@ extends Node2D
 # --- RANIȚA LOGISTICĂ ---
 var munitie_ai = {} 
 var cufar_curent_activ = null 
-var toate_titlurile_capitolelor = [] # Memoria noastră tactică
+var toate_titlurile_capitolelor = []
 
 func _ready():
-	# Ascundem interfețele la start
 	if carte_ui != null: carte_ui.hide()
 	if quiz_ui != null: quiz_ui.hide()
 	
-	# Conectăm semnalele de la AI
 	ai_manager.date_gata.connect(_pe_raport_ai_primit)
 	ai_manager.roadmap_gata.connect(_pe_roadmap_primit) 
 	quiz_ui.test_terminat.connect(_pe_quiz_terminat)
 	
-	# --- ÎNROLAREA INTELIGENTĂ A TRUPELOR ---
 	var toate_cuferele = get_tree().get_nodes_in_group("Cufere")
 	var mese_tactice = []
 	
-	# 1. Separăm mesele de cufere
 	for obiect in toate_cuferele:
 		if obiect.has_signal("deschide_cartea"):
 			mese_tactice.append(obiect)
@@ -32,72 +28,97 @@ func _ready():
 			if not obiect.cufar_accesat.is_connected(_pe_cufar_solicita_quiz):
 				obiect.cufar_accesat.connect(_pe_cufar_solicita_quiz)
 				
-	# 2. Sortăm mesele alfabetic (MasaCuCarte1, MasaCuCarte2...)
 	mese_tactice.sort_custom(func(a, b): return a.name < b.name)
 	
-	# 3. Le legăm la sistem, dându-le fiecăreia "ID-ul" (indexul)
 	for i in range(mese_tactice.size()):
 		var masa = mese_tactice[i]
 		if not masa.deschide_cartea.is_connected(_on_masa_deschisa_cu_index):
 			masa.deschide_cartea.connect(func(continut): _on_masa_deschisa_cu_index(i, continut))
-			print("BAZĂ: ", masa.name, " a primit ID-ul ", i)
 
-	# --- ATACUL IMEDIAT ---
 	if DateGlobale.subiect_ales_de_jucator != "":
-		print("COMANDAMENT: Solicităm roadmap pentru: ", DateGlobale.subiect_ales_de_jucator)
 		ai_manager.cere_roadmap_materie(DateGlobale.subiect_ales_de_jucator)
 
-# ==========================================
-# CÂND O MASĂ SE DESCHIDE (ȘTIE CE NUMĂR ARE!)
-# ==========================================
 func _on_masa_deschisa_cu_index(index: int, continut_text: String):
-	print("BAZA: Deschid cartea pentru sectorul ", index + 1)
+	# Dacă jucătorul a apăsat Start și acum interacționează cu masa:
 	if carte_ui != null:
-		var titlu = "DOCUMENTE CLASIFICATE"
+		# 2. ORDIN DE APARIȚIE: Scoatem harta la lumină!
+		carte_ui.show() 
+		
+		var titlu = "CLASSIFIED DOCUMENTS"
 		if index < toate_titlurile_capitolelor.size():
 			titlu = toate_titlurile_capitolelor[index]
-			
+		
+		# Încărcăm textul lung (cel generat masiv de Python acum!)
 		carte_ui.incarca_materia(titlu, continut_text)
 
 # ==========================================
 # CÂND SE ÎNTOARCE AI-UL CU CELE 6 CAPITOLE
 # ==========================================
 func _pe_roadmap_primit(date_primite):
-	print("COMANDAMENT: Distribuim datele tactice în cele 6 sectoare!")
+	print("COMANDAMENT: Extragem datele tactice din pachetul Python!")
 	
 	var lista_finala = []
-	if date_primite.has("capitole"): lista_finala = date_primite["capitole"]
-	elif date_primite.has("chapters"): lista_finala = date_primite["chapters"]
 	
-	if lista_finala.size() < 6:
-		print("EROARE CRITICĂ: AI-ul a eșuat la numărătoare!")
+	# --- EXTRACTORUL INTELIGENT (RADARUL DE LISTE) ---
+	# Nu ne mai interesează cum a botezat AI-ul lista ("capitole", "chapters", "data").
+	# Căutăm direct prima listă (Array) pe care o găsim în JSON!
+	for cheie in date_primite.keys():
+		if typeof(date_primite[cheie]) == TYPE_ARRAY:
+			lista_finala = date_primite[cheie]
+			break
+			
+	# Verificăm dacă inamicul ne-a trimis o cutie complet goală
+	if lista_finala.size() == 0:
+		print("EROARE FATALĂ: Python a trimis un JSON fără nicio listă!")
 		return
 
-	# Salvăm titlurile
+	# TACTICA DE UMPLERE: Dacă a trimis mai puține de 6, le clonăm pe ultimele!
+	if lista_finala.size() < 6:
+		print("AVERTISMENT: AI-ul a fost leneș! Multiplicăm muniția pentru a acoperi 6 mese!")
+		var ultimul_capitol = lista_finala[lista_finala.size() - 1]
+		while lista_finala.size() < 6:
+			lista_finala.append(ultimul_capitol)
+
+	# SALVĂM TITLURILE INTELIGENT (căutăm "title" sau "titlu")
 	toate_titlurile_capitolelor.clear()
 	for p in lista_finala:
-		toate_titlurile_capitolelor.append(p.get("title", "Capitol"))
+		toate_titlurile_capitolelor.append(p.get("title", p.get("titlu", "Capitol Clasificat")))
 
-	# --- DISTRIBUȚIA ANTIGLONȚ ---
+	# DISTRIBUȚIA PE TEREN
 	var mese_tactice = []
+	var cufere_de_lupta = []
+	
 	for obiect in get_tree().get_nodes_in_group("Cufere"):
 		if obiect.has_signal("deschide_cartea"):
 			mese_tactice.append(obiect)
+		elif obiect.has_signal("cufar_accesat"):
+			cufere_de_lupta.append(obiect)
 			
-	# Sortăm ca să fim siguri că Masa 1 primește Capitolul 1
 	mese_tactice.sort_custom(func(a, b): return a.name < b.name)
+	cufere_de_lupta.sort_custom(func(a, b): return a.name < b.name)
 	
-	# Pompăm textul direct pe țeavă în fiecare masă găsită
 	for i in range(min(mese_tactice.size(), lista_finala.size())):
-		mese_tactice[i].documentatie_camera = lista_finala[i].get("content", "")
-		print("LOGISTICĂ: ", mese_tactice[i].name, " a fost încărcată cu textul din Capitolul ", i + 1)
+		var p = lista_finala[i]
+		var text_capitol = "Eroare la decriptare text."
+		
+		# --- EXTRACTORUL DE TEXT ---
+		# Căutăm textul indiferent cum l-a ascuns AI-ul!
+		if p.has("content"): text_capitol = p["content"]
+		elif p.has("text"): text_capitol = p["text"]
+		elif p.has("teorie"): text_capitol = p["teorie"]
+		
+		# Încărcăm Masa
+		mese_tactice[i].documentatie_camera = text_capitol
+		# Încărcăm Cufărul (dar atenție, acum Cufărul oricum nu mai folosește textul ăsta, fiindcă extrage Python direct, dar îl lăsăm pentru siguranță!)
+		if i < cufere_de_lupta.size():
+			cufere_de_lupta[i].documentatie_camera = text_capitol
+			
+	print("LOGISTICĂ: Toate cele 6 cărți au fost încărcate cu succes!")
 
-# ==========================================
-# CÂND UN CUFĂR CERE QUIZ ȘI CÂND SE TERMINĂ
-# ==========================================
-func _pe_cufar_solicita_quiz(subiectul_primit, referinta_cufar):
+func _pe_cufar_solicita_quiz(text_capitol_primit, referinta_cufar):
 	cufar_curent_activ = referinta_cufar 
-	ai_manager.cere_date_de_la_api(subiectul_primit)
+	# Trimitem textul capitolului (text_capitol_primit) către AI!
+	ai_manager.cere_date_de_la_api(text_capitol_primit)
 
 func _pe_raport_ai_primit(date_procesate: Dictionary):
 	var intrebari_ai = date_procesate["intrebari"]
@@ -106,39 +127,20 @@ func _pe_raport_ai_primit(date_procesate: Dictionary):
 		quiz_ui.show() 
 		quiz_ui.incepe_interogatoriul(intrebari_ai)
 
-# ==========================================
-# CÂND SE TERMINĂ TESTUL LA UN CUFĂR
-# ==========================================
 func _pe_quiz_terminat(scor: int):
 	if quiz_ui != null: quiz_ui.hide()
 	
 	if scor > 0:
-		print("COMANDAMENT: Jucătorul a trecut testul!")
 		if cufar_curent_activ != null:
-			# Salvăm numele înainte să-l distrugem, ca să știm cine era!
 			var nume_cufar = cufar_curent_activ.name 
-			
-			print("PULVERIZĂM CUFĂRUL: ", nume_cufar)
 			cufar_curent_activ.distruge_cufarul() 
 			cufar_curent_activ = null
 			
-			# VERIFICARE TACTICĂ: A fost ultimul cufăr?!
-			# ATENȚIE: Pune aici numele EXACT al cufărului 6 din editorul tău!
 			if nume_cufar == "Cufar6" or nume_cufar == "Cufarul6":
-				print("ALARMĂ DE GRADUL ZERO!!! DRAGONUL S-A TREZIT!")
-				# AICI POȚI SĂ DAI SHOW() LA O POZĂ/ANIMAȚIE CU DRAGONUL PE HARTĂ!
 				_initiaza_transferul_spre_arena()
 	else:
-		print("COMANDAMENT: AI PICAT! Mai citește documentația și revino!")
 		cufar_curent_activ = null
 
-# --- MANEVRA DE AȘTEPTARE ȘI EVACUARE ---
 func _initiaza_transferul_spre_arena():
-	print("FRONTUL: Așteptăm 3 secunde pentru efect dramatic...")
-	
-	# Înghețăm execuția acestui script pentru fix 3 secunde!
-	await get_tree().create_timer(3.0).timeout 
-	
-	print("COMANDAMENT: TELEPORTARE ÎN ARENA BOSS-ULUI!")
-	# Schimbăm scena. Asigură-te că vei crea o scenă cu numele ăsta!
+	await get_tree().create_timer(1.5).timeout 
 	get_tree().change_scene_to_file("res://scenes/boss_arena.tscn")

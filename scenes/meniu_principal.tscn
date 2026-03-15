@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://33bgp5pady4x"]
+
+[ext_resource type="Script" uid="uid://bbx12wiudkpwc" path="res://scenes/meniu_principal.gd" id="1_rs6jc"]
+[ext_resource type="Texture2D" uid="uid://b55j40dgjlbbx" path="res://Assets/images/usi/sprite_sheet_menu.png" id="1_we7iv"]
+[ext_resource type="FontFile" uid="uid://ccbt22v7esii8" path="res://Assets/Minecraftia-Regular.ttf" id="3_hexn3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v44di"]
+atlas = ExtResource("1_we7iv")
+region = Rect2(0, 0, 1023, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we7iv"]
+atlas = ExtResource("1_we7iv")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rs6jc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hexn3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7saht"]
+
+[node name="MeniuPrincipal" type="Control" unique_id=376759246]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rs6jc")
+
+[node name="SpriteSheetMenu" type="Sprite2D" parent="." unique_id=864896285]
+position = Vector2(577, 323.99997)
+scale = Vector2(1.1319648, 0.6289062)
+texture = SubResource("AtlasTexture_v44di")
+
+[node name="BtnStart" type="Button" parent="SpriteSheetMenu" unique_id=670955714]
+offset_left = -300.3627
+offset_top = 119.254654
+offset_right = 307.43002
+offset_bottom = 181.2671
+flat = true
+
+[node name="BtnOptions" type="Button" parent="SpriteSheetMenu" unique_id=2014546358]
+offset_left = -188.1684
+offset_top = 214.65845
+offset_right = 227.9223
+offset_bottom = 286.21124
+flat = true
+
+[node name="BtnExit" type="Button" parent="SpriteSheetMenu" unique_id=1276994643]
+offset_left = -108.66063
+offset_top = 321.19257
+offset_right = 115.72795
+offset_bottom = 386.38513
+flat = true
+
+[node name="PergamentPopUp" type="TextureRect" parent="." unique_id=1927552732]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -577.0
+offset_top = -561.0
+offset_right = 579.0
+offset_bottom = 562.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_we7iv")
+
+[node name="SelectorVarsta" type="OptionButton" parent="PergamentPopUp" unique_id=1743834874]
+layout_mode = 0
+offset_left = 497.0
+offset_top = 588.0
+offset_right = 529.0
+offset_bottom = 608.0
+allow_reselect = true
+
+[node name="LineEdit" type="LineEdit" parent="PergamentPopUp" unique_id=124029797]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 489.0
+offset_right = 720.0
+offset_bottom = 524.0
+theme_override_colors/font_color = Color(0.10703244, 0.05356326, 0.012709421, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+theme_override_fonts/font = ExtResource("3_hexn3")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rs6jc")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_hexn3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7saht")
+placeholder_text = "->            <-"
+alignment = 1
+max_length = 100
+flat = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PergamentPopUp" unique_id=2125906209]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 455.5
+offset_right = 758.0
+offset_bottom = 504.5
+theme_override_colors/default_color = Color(0.11454759, 0.04970292, 0.0008419362, 1)
+theme_override_fonts/normal_font = ExtResource("3_hexn3")
+theme_override_fonts/bold_font = ExtResource("3_hexn3")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 17
+bbcode_enabled = true
+text = "[b]WHAT DO YOU WANT TO LEARN?[/b]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PergamentPopUp" unique_id=1483739166]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 548.0
+offset_right = 670.0
+offset_bottom = 597.0
+theme_override_colors/default_color = Color(0.11454759, 0.04970292, 0.0008419362, 1)
+theme_override_fonts/normal_font = ExtResource("3_hexn3")
+theme_override_fonts/bold_font = ExtResource("3_hexn3")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 17
+bbcode_enabled = true
+text = "[b]HOW OLD ARE YOU?[/b]"
+
+[node name="BtnStartMeniu" type="Button" parent="PergamentPopUp" unique_id=879188362]
+layout_mode = 0
+offset_left = 519.0
+offset_top = 686.0
+offset_right = 633.0
+offset_bottom = 721.0
+text = "START"
+
+[connection signal="pressed" from="SpriteSheetMenu/BtnStart" to="." method="_on_btn_start_pressed"]
+[connection signal="pressed" from="SpriteSheetMenu/BtnOptions" to="." method="_on_btn_options_pressed"]
+[connection signal="pressed" from="SpriteSheetMenu/BtnExit" to="." method="_on_btn_exit_pressed"]
+[connection signal="text_submitted" from="PergamentPopUp/LineEdit" to="." method="_on_line_edit_text_submitted"]

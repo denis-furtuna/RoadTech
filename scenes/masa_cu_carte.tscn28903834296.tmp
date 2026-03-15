@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://kiwggduib7nb"]
+
+[ext_resource type="Texture2D" uid="uid://sk8kkfm4wd7t" path="res://Assets/images/Tiles/Props 1.1.png" id="1_48uhy"]
+[ext_resource type="Script" uid="uid://c1cjw14bnbjw8" path="res://scenes/masa_cu_carte.gd" id="1_58e5i"]
+[ext_resource type="Texture2D" uid="uid://byxf33j6b2tks" path="res://Assets/carte/sprite_sheet_book.png" id="2_ptqil"]
+[ext_resource type="Texture2D" uid="uid://25sfqyuqps64" path="res://Assets/carte/32p_Book.png" id="3_58e5i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuts2"]
+atlas = ExtResource("1_48uhy")
+region = Rect2(224, 50, 64, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pwgw"]
+size = Vector2(645, 368.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptqil"]
+size = Vector2(1248, 1723.25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07dcd"]
+atlas = ExtResource("2_ptqil")
+region = Rect2(0, 0, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v4k3"]
+atlas = ExtResource("2_ptqil")
+region = Rect2(2000, 0, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k6aq"]
+atlas = ExtResource("2_ptqil")
+region = Rect2(4000, 0, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_derok"]
+atlas = ExtResource("2_ptqil")
+region = Rect2(0, 1500, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjjun"]
+atlas = ExtResource("2_ptqil")
+region = Rect2(2000, 1500, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovat3"]
+atlas = ExtResource("2_ptqil")
+region = Rect2(4000, 1500, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orbdv"]
+atlas = ExtResource("2_ptqil")
+region = Rect2(0, 3000, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82ogi"]
+atlas = ExtResource("2_ptqil")
+region = Rect2(2000, 3000, 2000, 1500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lqver"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_07dcd")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_2v4k3")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_2k6aq")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_derok")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_vjjun")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_ovat3")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_orbdv")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_82ogi")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MasaCuCarte" type="StaticBody2D" unique_id=1753039275]
+script = ExtResource("1_58e5i")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1095236448]
+position = Vector2(791.16003, 262.25)
+scale = Vector2(10.13, 10.13)
+texture = SubResource("AtlasTexture_kuts2")
+
+[node name="ColiziuneFizicaMasa" type="CollisionShape2D" parent="." unique_id=1130497896]
+position = Vector2(791.66003, 217.625)
+shape = SubResource("RectangleShape2D_0pwgw")
+
+[node name="ZonaRadar" type="Area2D" parent="." unique_id=1328214309]
+position = Vector2(184, -30)
+
+[node name="ColiziuneRadar" type="CollisionShape2D" parent="ZonaRadar" unique_id=781865930]
+position = Vector2(442, 886.375)
+shape = SubResource("RectangleShape2D_ptqil")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2056849566]
+position = Vector2(719.16003, 167.25)
+scale = Vector2(0.195, 0.195)
+sprite_frames = SubResource("SpriteFrames_lqver")
+frame = 7
+frame_progress = 1.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=380699191]
+position = Vector2(987.1599, 167.25)
+scale = Vector2(4.115, 4.115)
+texture = ExtResource("3_58e5i")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1786576909]
+position = Vector2(989.16, 129.25002)
+scale = Vector2(4.115, 4.115)
+texture = ExtResource("3_58e5i")
+
+[connection signal="body_entered" from="ZonaRadar" to="." method="_on_zona_radar_body_entered"]
+[connection signal="body_exited" from="ZonaRadar" to="." method="_on_zona_radar_body_exited"]

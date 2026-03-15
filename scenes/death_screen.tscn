@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://pfhs51hfubel"]
+
+[ext_resource type="Script" path="res://scripts/._death_screen.gd" id="1_uyutr"]
+[ext_resource type="Texture2D" uid="uid://b6ma0qspwweep" path="res://Assets/images/usi/You_Died.png" id="2_dwo6e"]
+
+[node name="DeathScreen" type="Control" unique_id=376759246]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uyutr")
+
+[node name="SpriteSheetMenu" type="Sprite2D" parent="." unique_id=864896285]
+position = Vector2(577, 323.99997)
+scale = Vector2(1.1319648, 0.6289062)
+texture = ExtResource("2_dwo6e")
+
+[node name="BtnRetry" type="Button" parent="SpriteSheetMenu" unique_id=670955714]
+offset_left = -206.72023
+offset_top = 119.254654
+offset_right = 228.80571
+offset_bottom = 181.2671
+flat = true
+
+[node name="BtnOptions" type="Button" parent="SpriteSheetMenu" unique_id=2014546358]
+offset_left = -188.1684
+offset_top = 214.65845
+offset_right = 227.9223
+offset_bottom = 286.21124
+flat = true
+
+[node name="BtnExit" type="Button" parent="SpriteSheetMenu" unique_id=1276994643]
+offset_left = -108.66063
+offset_top = 321.19257
+offset_right = 115.72795
+offset_bottom = 386.38513
+flat = true
+
+[connection signal="pressed" from="SpriteSheetMenu/BtnRetry" to="." method="_on_btn_start_pressed"]
+[connection signal="pressed" from="SpriteSheetMenu/BtnRetry" to="." method="_on_btn_retry_pressed"]
+[connection signal="pressed" from="SpriteSheetMenu/BtnOptions" to="." method="_on_btn_options_pressed"]
+[connection signal="pressed" from="SpriteSheetMenu/BtnExit" to="." method="_on_btn_exit_pressed"]
