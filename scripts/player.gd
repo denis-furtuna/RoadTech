@@ -5,7 +5,7 @@ extends CharacterBody2D
 var last_direction : Vector2 = Vector2.RIGHT
 var is_interacting : bool = false # LACĂTUL TACTIC! 
 
-const SPEED = 600.0
+const SPEED = 800.0
 
 func _ready() -> void:
 	# Când se termină ORICE animație, chemăm această funcție să verifice situația!
