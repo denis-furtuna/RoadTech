@@ -80,33 +80,25 @@ func _incarca_intrebarea():
 		quiz_timer.porneste(10.0)
 
 func _pe_timp_expirat():
-	# Blocăm butoanele ca să nu mai poată răspunde
-	for btn in butoane:
-		btn.disabled = true
-	print("TIMP EXPIRAT! Dragonul a atacat!")
-	hp_jucator.value -= damage_step
-	text_intrebare.text = "TIMP EXPIRAT! Ai fost prea încet!"
+	print("TIMP EXPIRAT! Dragonul te-a făcut grătar în timp ce te gândeai!")
 	
-	$AnimatedSprite2D.hide()
-	$Sprite2D.show()
+	text_intrebare.text = "TIME'S UP! CRITICAL DEFEAT!"
+	hp_jucator.value = 0 # Forțăm viața la 0 ca să fim siguri
 	
-	await get_tree().create_timer(1.0).timeout
+	# Oprim butoanele
+	_final_de_lupta()
 	
-	$AnimatedSprite2D.show()
-	$Sprite2D.hide()
-	$AnimatedSprite2D.play("default")
-	
+	# Efect dramatic de 2 secunde
 	await get_tree().create_timer(2.0).timeout
 	
-	# Verificăm dacă a murit din cauza timpului
-	if hp_jucator.value <= 0:
-		text_intrebare.text = "CRITICAL DEFEAT! YOU HAVE BEEN DEFEATED!"
-		if death_screen != null:
-			death_screen.afiseaza_meniu()
-			_final_de_lupta()
+	# TELEPORTAREA CĂTRE ECRANUL DE MOARTE
+	var calea_spre_moarte = "res://scenes/death_screen.tscn"
+	
+	if FileAccess.file_exists(calea_spre_moarte):
+		print("SYSTEM: Timpul a expirat. Evacuare către Death Screen!")
+		get_tree().change_scene_to_file(calea_spre_moarte)
 	else:
-		index_curent += 1
-		_incarca_intrebarea()
+		print("CRITICAL ERROR: Nu găsesc fișierul la: ", calea_spre_moarte)
 		
 func _pe_buton_apasat(buton_apasat: Button):
 	if quiz_timer:
