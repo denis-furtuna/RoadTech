@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bv48iffbhhhin"]
+
+[ext_resource type="Script" uid="uid://by0tpmsqg3jiv" path="res://scenes/cufar.gd" id="1_0bdda"]
+[ext_resource type="Texture2D" uid="uid://b1u0ywr07dn27" path="res://Assets/images/usi/sprite_sheet_chest_key.png" id="1_1eo14"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bdda"]
+size = Vector2(247, 226)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgplr"]
+size = Vector2(366.75, 350.5)
+
+[node name="Cufar" type="StaticBody2D" unique_id=1801588459 groups=["Cufere"]]
+z_index = -1
+position = Vector2(191, 51)
+script = ExtResource("1_0bdda")
+
+[node name="FizicaZic" type="CollisionShape2D" parent="." unique_id=280188432]
+position = Vector2(343.5, 294)
+shape = SubResource("RectangleShape2D_0bdda")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=8338726]
+position = Vector2(343, 283)
+texture = ExtResource("1_1eo14")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 256)
+
+[node name="ZonaSenzor" type="Area2D" parent="." unique_id=1595589368]
+position = Vector2(84, 86)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaSenzor" unique_id=880817967]
+position = Vector2(259, 215)
+shape = SubResource("RectangleShape2D_cgplr")

@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://n1xiddlbabmv"]
+
+[ext_resource type="Script" uid="uid://dybm28r5y12mu" path="res://scenes/boss_arena.gd" id="1_kdgpo"]
+[ext_resource type="PackedScene" uid="uid://c0akkahfhspeu" path="res://scenes/manager_ai.tscn" id="2_7okkn"]
+[ext_resource type="Texture2D" uid="uid://fxhwilhqemjx" path="res://Assets/images/Final boss/arena.png" id="3_84w8w"]
+[ext_resource type="FontFile" uid="uid://ccbt22v7esii8" path="res://Assets/Minecraftia-Regular.ttf" id="4_6wr5o"]
+[ext_resource type="Texture2D" uid="uid://0y5l2uvn6521" path="res://Assets/images/player/sprite_sheet_scratching.png" id="5_84w8w"]
+[ext_resource type="Texture2D" uid="uid://dlgwnfkppkc6p" path="res://Assets/images/Final boss/sprite_sheet_final_boss.png" id="6_6wr5o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84w8w"]
+bg_color = Color(0.16470589, 0.8627451, 0.07058824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wr5o"]
+bg_color = Color(0.16470589, 0.8627451, 0.07058824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vi6v3"]
+atlas = ExtResource("5_84w8w")
+region = Rect2(0, 0, 4096, 4096)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwigj"]
+atlas = ExtResource("5_84w8w")
+region = Rect2(4096, 0, 4096, 4096)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_io3m0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vi6v3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwigj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i50kd"]
+atlas = ExtResource("6_6wr5o")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlvdt"]
+atlas = ExtResource("6_6wr5o")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd8li"]
+atlas = ExtResource("6_6wr5o")
+region = Rect2(2048, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnigd"]
+atlas = ExtResource("6_6wr5o")
+region = Rect2(0, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0ayj"]
+atlas = ExtResource("6_6wr5o")
+region = Rect2(1024, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfq8f"]
+atlas = ExtResource("6_6wr5o")
+region = Rect2(2048, 1024, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvwov"]
+atlas = ExtResource("6_6wr5o")
+region = Rect2(0, 2048, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1400f"]
+atlas = ExtResource("6_6wr5o")
+region = Rect2(1024, 2048, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pbd4"]
+atlas = ExtResource("6_6wr5o")
+region = Rect2(2048, 2048, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0dfqf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i50kd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlvdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd8li")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnigd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0ayj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfq8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvwov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1400f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pbd4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BossArena" type="Control" unique_id=10859369]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kdgpo")
+
+[node name="ManagerAI" parent="." unique_id=1300364889 instance=ExtResource("2_7okkn")]
+
+[node name="FundalQuiz" type="TextureRect" parent="." unique_id=322690628]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.003
+offset_top = 2.0
+offset_right = -1.0
+offset_bottom = -34.019043
+texture = ExtResource("3_84w8w")
+stretch_mode = 2
+
+[node name="TextIntrebare" type="RichTextLabel" parent="FundalQuiz" unique_id=431062744]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.29500002
+offset_left = 259.0
+offset_top = 64.0
+offset_right = -322.0
+offset_bottom = 0.24998474
+theme_override_fonts/normal_font = ExtResource("4_6wr5o")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+
+[node name="CutieButoane" type="VBoxContainer" parent="FundalQuiz" unique_id=704890360]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.34
+anchor_right = 0.998
+anchor_bottom = 0.994
+offset_left = 342.0
+offset_top = 15.679993
+offset_right = -386.69604
+offset_bottom = -43.112
+theme_override_constants/separation = 15
+
+[node name="BtnA" type="Button" parent="FundalQuiz/CutieButoane" unique_id=1308009931]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_6wr5o")
+theme_override_font_sizes/font_size = 15
+
+[node name="BtnB" type="Button" parent="FundalQuiz/CutieButoane" unique_id=1790042083]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_6wr5o")
+theme_override_font_sizes/font_size = 15
+
+[node name="BtnC" type="Button" parent="FundalQuiz/CutieButoane" unique_id=1826660608]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_6wr5o")
+theme_override_font_sizes/font_size = 15
+
+[node name="BtnD" type="Button" parent="FundalQuiz/CutieButoane" unique_id=639673606]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_6wr5o")
+theme_override_font_sizes/font_size = 15
+
+[node name="HpBoss" type="ProgressBar" parent="." unique_id=203289106]
+layout_mode = 0
+offset_left = 851.6619
+offset_top = 171.69617
+offset_right = 1017.5005
+offset_bottom = 192.98997
+rotation = 0.059285782
+theme_override_styles/fill = SubResource("StyleBoxFlat_84w8w")
+step = 34.0
+value = 100.0
+show_percentage = false
+
+[node name="HpJucator" type="ProgressBar" parent="." unique_id=1485792481]
+layout_mode = 0
+offset_left = 11.999997
+offset_top = 174.99998
+offset_right = 250.0
+offset_bottom = 201.99998
+rotation = -0.08635025
+theme_override_styles/fill = SubResource("StyleBoxFlat_6wr5o")
+step = 34.0
+value = 100.0
+show_percentage = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=120460766]
+position = Vector2(236, 395)
+rotation = -0.045378562
+scale = Vector2(0.125, 0.125)
+sprite_frames = SubResource("SpriteFrames_io3m0")
+frame_progress = 0.35514662
+flip_h = true
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1661179417]
+position = Vector2(893.99994, 291.99997)
+rotation = -0.08726646
+scale = Vector2(0.5255812, 0.54930305)
+sprite_frames = SubResource("SpriteFrames_0dfqf")
+frame_progress = 0.7023861

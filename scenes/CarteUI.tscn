@@ -1,0 +1,262 @@
+[gd_scene format=3 uid="uid://ciyqdkmuvsmb1"]
+
+[ext_resource type="Script" uid="uid://stj8s0faem2k" path="res://scripts/carte_ui.gd" id="1_nbrqx"]
+[ext_resource type="FontFile" uid="uid://ccbt22v7esii8" path="res://Assets/Minecraftia-Regular.ttf" id="2_vxdr6"]
+[ext_resource type="Texture2D" uid="uid://8hrlk6bwgbq6" path="res://Assets/carte/UIBook.png" id="2_xnnwa"]
+[ext_resource type="Texture2D" uid="uid://byxf33j6b2tks" path="res://Assets/carte/sprite_sheet_book.png" id="4_fflxd"]
+[ext_resource type="Texture2D" uid="uid://0y5l2uvn6521" path="res://Assets/images/player/sprite_sheet_scratching.png" id="4_wmfpb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dqah"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(0, 0, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw6fh"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(2000, 3000, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xli5o"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(0, 3000, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uct3"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(4000, 1500, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0gsy"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(2000, 1500, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgssg"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(0, 1500, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q43rx"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(4000, 0, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54h6u"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(2000, 0, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cssbj"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(0, 0, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yxaq"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(2000, 0, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf4a3"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(4000, 0, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yfsy"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(0, 1500, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwepc"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(2000, 1500, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqca5"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(4000, 1500, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ano4w"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(0, 3000, 2000, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7fcw"]
+atlas = ExtResource("4_fflxd")
+region = Rect2(2000, 3000, 2000, 1500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hw6fh"]
+animations = [{
+"frames": [{
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_3dqah")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_hw6fh")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_xli5o")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_2uct3")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_y0gsy")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_wgssg")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_q43rx")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_54h6u")
+}],
+"loop": false,
+"name": &"backward",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_cssbj")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_2yxaq")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_kf4a3")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_2yfsy")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_xwepc")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_mqca5")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_ano4w")
+}, {
+"duration": 0.25,
+"texture": SubResource("AtlasTexture_q7fcw")
+}],
+"loop": false,
+"name": &"forward",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fflxd"]
+atlas = ExtResource("4_wmfpb")
+region = Rect2(0, 0, 4096, 4096)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro5gj"]
+atlas = ExtResource("4_wmfpb")
+region = Rect2(4096, 0, 4096, 4096)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cssbj"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_fflxd")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ro5gj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CarteUi" type="Control" unique_id=1937088577]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nbrqx")
+
+[node name="BookPanel" type="TextureRect" parent="." unique_id=1627175422]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 119.00001
+offset_right = 16.0
+offset_bottom = 122.0
+scale = Vector2(0.695, 0.695)
+mouse_filter = 2
+texture = ExtResource("2_xnnwa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BookPanel" unique_id=2000057714]
+z_index = 100
+position = Vector2(626.6188, 294.24463)
+scale = Vector2(0.738849, 0.6858515)
+sprite_frames = SubResource("SpriteFrames_hw6fh")
+animation = &"backward"
+
+[node name="LeftPageText" type="RichTextLabel" parent="BookPanel" unique_id=1832354000]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.057000004
+anchor_top = 0.11400001
+anchor_right = 0.46500003
+anchor_bottom = 0.794
+offset_left = 0.46605682
+offset_top = -35.3651
+offset_right = 201.08405
+offset_bottom = 214.61047
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.695, 0.695)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = 0
+theme_override_fonts/normal_font = ExtResource("2_vxdr6")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+scroll_active = false
+
+[node name="RightPageText" type="RichTextLabel" parent="BookPanel" unique_id=308583499]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.541
+anchor_top = 0.11400001
+anchor_right = 0.943
+anchor_bottom = 0.79700005
+offset_left = -1.7730103
+offset_top = 0.6061325
+offset_right = 200.75269
+offset_bottom = 253.6596
+scale = Vector2(0.695, 0.695)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = 0
+theme_override_fonts/normal_font = ExtResource("2_vxdr6")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+scroll_active = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2064786409]
+z_index = 1001
+position = Vector2(885, 330.99997)
+scale = Vector2(0.154, 0.154)
+sprite_frames = SubResource("SpriteFrames_cssbj")
+autoplay = "default"
+frame_progress = 0.20711601
+
+[node name="BtnNext" type="TextureButton" parent="." unique_id=622222021]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.517
+anchor_top = 0.007
+anchor_right = 0.99600005
+anchor_bottom = 0.99500006
+offset_left = 217.75543
+offset_top = 564.47675
+offset_right = 218.5055
+offset_bottom = 564.0849
+rotation = 3.1415927
+scale = Vector2(0.695, 0.695)
+stretch_mode = 0
+
+[node name="BtnPrev" type="TextureButton" parent="." unique_id=655065296]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.003
+anchor_top = 0.015000001
+anchor_right = 0.48400003
+anchor_bottom = 0.99100006
+offset_left = 14.324
+offset_top = 116.23
+offset_right = 13.731018
+offset_bottom = 115.85394
+scale = Vector2(0.695, 0.695)
+stretch_mode = 0
