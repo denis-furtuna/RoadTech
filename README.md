@@ -49,9 +49,10 @@ To keep your API keys secure and configure the environment:
 
 ### STEP 4: Start the Command Center
 Once the dependencies are installed and the environment is set up, initiate the server:
+The FastAPI backend will start running locally at http://127.0.0.1:5000. You can now connect the Godot frontend to this address to begin the quests.
 
 Run the following command in your terminal:
 ```bash
 python server.py
 
-The FastAPI backend will start running locally at http://127.0.0.1:5000. You can now connect the Godot frontend to this address to begin the quests.
+
