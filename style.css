@@ -1,0 +1,127 @@
+:root {
+    --bg-color: #050505;
+    --primary: #FF8800; /* Portocaliu ROAD TECH */
+    --secondary: #FFFF00; /* Galben */
+    --danger: #FF0000; /* Roșu Boss */
+    --text-main: #FFFFFF;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Press Start 2P', monospace;
+    overflow-x: hidden;
+}
+
+/* EFECT CRT EXTRAVAGANT (Linii subtile pe tot ecranul) */
+.crt-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    z-index: 9999;
+    pointer-events: none; /* Te lasă să dai click prin el */
+}
+
+/* TYPOGRAPHY & GLOWS */
+.text-neon {
+    color: var(--secondary);
+    text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+}
+.text-red {
+    color: var(--danger);
+    text-shadow: 2px 2px 0px #550000;
+}
+.section-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 50px;
+    line-height: 1.5;
+}
+
+/* BUTOANE PIXELATE */
+.pixel-btn {
+    background: #222;
+    border: 4px solid var(--text-main);
+    color: var(--text-main);
+    padding: 12px 20px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000;
+    transition: all 0.1s;
+    text-decoration: none;
+    display: inline-block;
+}
+.pixel-btn:hover {
+    background: var(--primary);
+    border-color: var(--secondary);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--secondary);
+    color: #000;
+}
+.highlight-btn {
+    background: var(--danger);
+    border-color: var(--secondary);
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 4px solid var(--primary);
+    background: #000;
+}
+.logo { font-size: 24px; color: var(--primary); }
+nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+
+/* CONTAINERE PIXELATE */
+.pixel-box {
+    border: 6px solid var(--primary);
+    background: rgba(20, 10, 0, 0.8);
+    padding: 30px;
+    box-shadow: inset 0 0 20px #000, 10px 10px 0px rgba(255, 136, 0, 0.2);
+}
+
+/* HERO SECTION */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: radial-gradient(circle at center, #2a1600 0%, var(--bg-color) 70%);
+}
+.hero h1 { font-size: 36px; line-height: 1.4; margin-bottom: 20px; }
+.hero p { color: #aaa; font-size: 14px; line-height: 1.8; max-width: 800px; margin: 0 auto 50px auto; }
+.hero-scroll { max-width: 400px; filter: drop-shadow(0 0 20px var(--secondary)); }
+
+/* THE ENGINE PIPELINE */
+.engine-section { padding: 80px 40px; }
+.pipeline-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.pipeline-step {
+    width: 300px;
+    text-align: center;
+    min-height: 350px;
+}
+.pipeline-step h3 { color: var(--secondary); font-size: 16px; margin: 20px 0; }
+.pipeline-step p { font-size: 12px; line-height: 1.6; color: #ccc; }
+.pixel-art-anim { width: 100px; height: 100px; image-rendering: pixelated; }
+.icon-server { font-size: 60px; }
+.circuit-arrow { font-size: 24px; color: var(--primary); }
+
+/* BOSS ARENA */
+.boss-section { padding: 80px 40px; display: flex; justify-content: center; }
+.boss-container { max-width: 800px; text-align: center; border-color: var(--danger); }
+.interactive-arena { margin-top: 40px; }
+.dragon-main { height: 250px; image-rendering: pixelated; filter: drop-shadow(0 0 15px var(--danger)); margin-bottom: 30px; }
+.combat-buttons { display: flex; justify-content: center; gap: 20px; }
+.btn-attack { border-color: #00FF00; color: #00FF00; }
+.btn-defend { border-color: var(--danger); color: var(--danger); }
+
+footer { text-align: center; padding: 40px; border-top: 4px solid #333; font-size: 10px; color: #666; }
