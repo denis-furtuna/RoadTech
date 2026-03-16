@@ -1,42 +1,53 @@
-// Salvăm rutele către fișierele tale GIF (va trebui să pui tu numele corecte ale fișierelor tale)
-const animDragonFire = "path/to/dragon_fire.gif";        // Boss idle/atac
-const animDragonHurt = "path/to/dragon_hurt.gif";        // Boss ia damage
-const animPlayerAtomed = "path/to/player_atomed.gif";    // Player moare
-const animPlayerThinking = "path/to/player_thinking.gif";// Player idle
+document.addEventListener("DOMContentLoaded", () => {
+    const dragonContainer = document.getElementById("dragon-container");
+    const playerDeathContainer = document.getElementById("player-death-container");
+    const btnCorrect = document.getElementById("btn-correct");
+    const btnWrong = document.getElementById("btn-wrong");
+    const combatText = document.querySelector(".combat-text");
 
-const dragonImageElement = document.getElementById('dragon-anim');
-const btnCorrect = document.getElementById('btn-correct');
-const btnWrong = document.getElementById('btn-wrong');
+    let isAnimating = false;
 
-let isAnimating = false;
+    // --- ATAC CORECT ---
+    btnCorrect.addEventListener("click", () => {
+        if (isAnimating) return;
+        isAnimating = true;
 
-// Ce se întâmplă când dai click pe RĂSPUNS CORECT
-btnCorrect.addEventListener('click', () => {
-    if(isAnimating) return;
-    isAnimating = true;
-    
-    // Dragonul își ia damage (dă din cap)
-    dragonImageElement.src = animDragonHurt;
-    
-    // După 1.5 secunde, revine la animația de flăcări
-    setTimeout(() => {
-        dragonImageElement.src = animDragonFire;
-        isAnimating = false;
-    }, 1500); 
-});
+        combatText.innerText = "CRITICAL HIT! ALGORITHM EXECUTED!";
+        combatText.style.color = "#00FF00";
 
-// Ce se întâmplă când dai click pe RĂSPUNS GREȘIT
-btnWrong.addEventListener('click', () => {
-    if(isAnimating) return;
-    isAnimating = true;
-    
-    // Jucătorul își ia damage (se transformă în atomed baby)
-    // Înlocuim dragonul cu animația jucătorului pe ecran pentru efect
-    dragonImageElement.src = animPlayerAtomed;
-    
-    // După 2 secunde, revine dragonul
-    setTimeout(() => {
-        dragonImageElement.src = animDragonFire;
-        isAnimating = false;
-    }, 2000);
+        // Schimbăm clasa Dragonului pentru a porni animația de Damage
+        dragonContainer.classList.remove("dragon-idle");
+        dragonContainer.classList.add("dragon-hurt");
+
+        // Revenim la normal după 1 secundă
+        setTimeout(() => {
+            dragonContainer.classList.remove("dragon-hurt");
+            dragonContainer.classList.add("dragon-idle");
+            combatText.innerText = "ARE YOU READY TO FACE THE FIRE?";
+            combatText.style.color = "#FFF";
+            isAnimating = false;
+        }, 1000);
+    });
+
+    // --- ATAC GREȘIT ---
+    btnWrong.addEventListener("click", () => {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        combatText.innerText = "FATAL ERROR! YOU HAVE BEEN ATOMIZED!";
+        combatText.style.color = "#FF0000";
+
+        // Afișăm player-ul făcut scrum
+        playerDeathContainer.classList.remove("hidden");
+
+        // Dragonul poate rămâne pe idle sau îl putem face mai agresiv
+        
+        // Revenim la normal după 2 secunde
+        setTimeout(() => {
+            playerDeathContainer.classList.add("hidden");
+            combatText.innerText = "ARE YOU READY TO FACE THE FIRE?";
+            combatText.style.color = "#FFF";
+            isAnimating = false;
+        }, 2000);
+    });
 });
