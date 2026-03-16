@@ -190,3 +190,50 @@ nav { display: flex; gap: 30px; align-items: center; }
 }
 .site-footer .logo { margin-bottom: 10px; color: #555; }
 .site-footer p { color: #555; font-size: 12px; font-family: 'Outfit', sans-serif; }
+
+/* ========================================================================= */
+/* 💥 ANIMAȚIA CĂRȚII MAGICE (CALIBRATĂ CHIRURGICAL LA 3x3) 💥               */
+/* ========================================================================= */
+
+.hero-book-anim {
+    /* Mărimea unui singur cadru pe ecran (Păstrăm proporția originală de 4:3) */
+    width: 256px; 
+    height: 192px; 
+    margin: 0 auto;
+    
+    background-image: url('Assets/carte/sprite_sheet_book.png');
+    background-repeat: no-repeat;
+    
+    /* SCALAREA MATEMATICĂ SUPREMĂ: 
+       256px lățime cadru x 3 coloane = 768px
+       192px înălțime cadru x 3 linii = 576px */
+    background-size: 768px 576px; 
+    
+    /* Umbra elegantă de dedesubt */
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
+    transform-origin: center bottom;
+    
+    /* DECLANȘĂM 3 ANIMAȚII SIMULTANE! */
+    animation: 
+        float-book 6s ease-in-out infinite,   /* 1. Plutirea stânga-dreapta */
+        play-book-x 0.9s steps(3) infinite,   /* 2. Citirea coloanelor (rapid) */
+        play-book-y 2.7s steps(3) infinite;   /* 3. Trecerea la rândul următor (0.9s * 3 linii) */
+}
+
+/* --- EFECTUL DE PLUTIRE ÎN AER --- */
+@keyframes float-book {
+    0% { transform: translateY(0px) rotate(-2deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(-2deg); }
+}
+
+/* --- CITIREA MATRICEI (X și Y) --- */
+@keyframes play-book-x {
+    0% { background-position-x: 0px; }
+    100% { background-position-x: -768px; } /* Se mută cu lățimea totală calculată */
+}
+
+@keyframes play-book-y {
+    0% { background-position-y: 0px; }
+    100% { background-position-y: -576px; } /* Se mută cu înălțimea totală calculată */
+}
