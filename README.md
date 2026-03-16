@@ -40,19 +40,25 @@ To run the complete Road Tech ecosystem locally, you must boot both the Backend 
    ```bash
    pip install -r requirements.txt
 
-### STEP 2: Environment Setup
+3. Environment Setup
 To keep your API keys secure and configure the environment:
-1. In the `RoadTech-Backend` folder, create a new file named `.env`.
-2. Open `.env` and add your Groq API key:
+a) In the `RoadTech-Backend` folder, create a new file named `.env`.
+b) Open `.env` and add your Groq API key:
    ```env
    GROQ_API_KEY=your_actual_api_key_here
 
-### STEP 4: Start the Command Center
+4. Start the Command Center
 Once the dependencies are installed and the environment is set up, initiate the server:
-The FastAPI backend will start running locally at http://127.0.0.1:5000. You can now connect the Godot frontend to this address to begin the quests.
 
 Run the following command in your terminal:
 ```bash
 python server.py
+```
+The FastAPI backend will start running locally at http://127.0.0.1:5000. You can now connect the Godot frontend to this address to begin the quests.
 
+### STEP 2: Launch the Frontend
+Open this repository in Godot 4.x.
 
+Ensure your manager_ai.gd script points to the correct backend URL (default http://127.0.0.1:5000).
+
+Press Play, type your subject, and INITIATE THE QUEST!
