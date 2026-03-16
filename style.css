@@ -142,45 +142,153 @@ nav ul { display: flex; gap: 20px; list-style: none; }
 @keyframes move-arrow { 0% { transform: translateX(0); } 100% { transform: translateX(10px); } }
 
 /* ========================================================================= */
-/* 💥 MOTORUL DE ANIMAȚIE SPRITE SHEETS (AICI E MAGIA) 💥                    */
+/* 💥 MOTORUL DE ANIMAȚIE SPRITE SHEETS (MATRICE AVANSATĂ) 💥                */
 /* ========================================================================= */
 
 .sprite-anim {
-    /* Mărimile implicite ale div-ului (Cât de mare se vede pe ecran) */
-    width: 128px; 
-    height: 128px; 
-    margin: 0 auto 20px auto;
     background-repeat: no-repeat;
-    image-rendering: pixelated; /* Păstrează pixelii clari, nu îi blurează! */
+    image-rendering: pixelated; 
+    margin: 0 auto 20px auto;
 }
 
-/* 1. PLAYER THINKING (Presupunem că are 4 frame-uri) */
+/* ------------------------------------------------------------------------- */
+/* 1. PLAYER SCRATCHING (2 coloane, 1 linie) */
+/* ------------------------------------------------------------------------- */
 .player-thinking {
-    background-image: url('Assets/images/player/sprite_sheet_interaction.png');
-    /* Lățimea totală a imaginii trebuie calculată aici. Dacă ai 4 frame-uri de 128px, lățimea e 512px */
-    background-size: 512px 128px; 
-    animation: play-sprite-4 1s steps(4) infinite;
+    width: 128px; height: 128px; /* Mărimea unui cadru pe ecran */
+    background-image: url('Assets/images/player/sprite_sheet_scratching.png');
+    background-size: 256px 128px; /* 2 col x 128px = 256px lățime totală */
+    animation: play-player-x 1s steps(2) infinite;
+}
+@keyframes play-player-x { 
+    to { background-position-x: -256px; } 
 }
 
-/* 2. CUFĂRUL (Poza statică sau animată) */
-.chest-idle {
-    background-image: url('Assets/quiz/cufar.png');
-    background-size: contain;
-    background-position: center;
+/* ------------------------------------------------------------------------- */
+/* 2. PLAYER TURNED TO ASH (O singură poză) */
+/* ------------------------------------------------------------------------- */
+.player-ash {
+    width: 128px; height: 128px;
+    background-image: url('Assets/images/player/Turned_to_ash.png');
+    background-size: cover;
 }
 
-/* 3. CARTEA */
+/* ------------------------------------------------------------------------- */
+/* 3. CARTEA (Să zicem 2 coloane, 4 linii = 8 pași) */
+/* ------------------------------------------------------------------------- */
 .book-scrolling {
+    width: 128px; height: 128px;
     background-image: url('Assets/carte/sprite_sheet_book.png');
-    background-size: 512px 128px; /* Ajustează dacă ai alt număr de cadre */
-    animation: play-sprite-4 1.5s steps(4) infinite;
+    background-size: 256px 512px; /* 2 col x 128px lățime | 4 linii x 128px înălțime */
+    
+    /* DECLANȘĂM X și Y! X merge rapid stânga-dreapta, Y coboară un rând! */
+    animation: 
+        play-book-x 0.5s steps(2) infinite, 
+        play-book-y 2s steps(4) infinite; 
+}
+@keyframes play-book-x { to { background-position-x: -256px; } }
+@keyframes play-book-y { to { background-position-y: -512px; } }
+
+/* ------------------------------------------------------------------------- */
+/* 4. DRAGON FIRE (Idle) (3 coloane, 3 linii) */
+/* ------------------------------------------------------------------------- */
+.dragon-idle {
+    width: 256px; height: 256px; /* Dragonul e mai mare! */
+    background-image: url('Assets/images/Final boss/sprite_sheet_final_boss.png');
+    background-size: 768px 768px; /* 3 col x 256px = 768px | 3 linii x 256px = 768px */
+    
+    animation: 
+        play-dragon-x-3 0.6s steps(3) infinite, 
+        play-dragon-y-3 1.8s steps(3) infinite;
 }
 
-/* KEYFRAMES PENTRU SPRITES (Mișcarea cadru cu cadru) */
-@keyframes play-sprite-4 {
-    0% { background-position: 0px 0; }
-    100% { background-position: -512px 0; } /* Se mută stânga cu lățimea totală a pozei */
+/* ------------------------------------------------------------------------- */
+/* 5. DRAGON DAMAGE (3 coloane, 2 linii) */
+/* ------------------------------------------------------------------------- */
+.dragon-hurt {
+    width: 256px; height: 256px;
+    background-image: url('Assets/images/Final boss/sprite_sheet_damage(1).png');
+    background-size: 768px 512px; /* 3 col x 256 = 768 | 2 linii x 256 = 512 */
+    
+    animation: 
+        play-dragon-x-3 0.6s steps(3) infinite, 
+        play-dragon-y-2 1.2s steps(2) infinite;
+    
+    filter: brightness(1.5) sepia(1) hue-rotate(-50deg) saturate(5); /* Îl facem să clipească roșu! */
 }
+
+/* ------------------------------------------------------------------------- */
+/* 6. DRAGON DEATH (2 coloane, 1 linie) */
+/* ------------------------------------------------------------------------- */
+.dragon-death {
+    width: 256px; height: 256px;
+    background-image: url('Assets/images/Final boss/sprite_sheet_dragon_death.png');
+    background-size: 512px 256px; /* 2 col x 256 = 512 */
+    
+    /* Animația NU e infinită la moarte! Se oprește la ultimul cadru (forwards) */
+    animation: play-dragon-x-2 1s steps(2) forwards;
+}
+
+/* KEYFRAMES PENTRU DRAGON (Reutilizabile) */
+@keyframes play-dragon-x-2 { to { background-position-x: -512px; } }
+@keyframes play-dragon-x-3 { to { background-position-x: -768px; } }
+@keyframes play-dragon-y-2 { to { background-position-y: -512px; } }
+@keyframes play-dragon-y-3 { to { background-position-y: -768px; } }
+
+
+/* ========================================================================= */
+/* BOSS ARENA FULL-SCREEN (EPIC LAYOUT)                                      */
+/* ========================================================================= */
+.boss-section { padding: 50px 0; background: #000; }
+.arena-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 600px;
+    margin: 0 auto;
+    background: url('Assets/images/Final boss/arena.png') center/cover no-repeat;
+    image-rendering: pixelated;
+    border: 8px solid #333;
+    box-shadow: 0 0 50px var(--danger);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Container Dragon */
+#dragon-container {
+    position: absolute;
+    bottom: 150px;
+    transform: scale(1.5); /* Îl facem gigant */
+}
+
+/* Container Player Ash */
+#player-death-container {
+    position: absolute;
+    bottom: 50px; left: 100px;
+    transform: scale(2);
+}
+.hidden { display: none !important; }
+
+/* INTERFAȚA DE LUPTĂ */
+.combat-ui {
+    background: rgba(0,0,0,0.85);
+    width: 100%;
+    padding: 20px;
+    border-top: 4px solid var(--primary);
+    text-align: center;
+    z-index: 10;
+}
+.combat-text { font-size: 20px; margin-bottom: 20px; color: #FFF; text-shadow: 2px 2px 0 #000; }
+.combat-buttons { display: flex; justify-content: center; gap: 20px; }
+.btn-attack { border-color: #00FF00; color: #00FF00; }
+.btn-attack:hover { background: #00FF00; color: #000; }
+.btn-defend { border-color: var(--danger); color: var(--danger); }
+.btn-defend:hover { background: var(--danger); color: #000; }
+.btn-kill { border-color: var(--secondary); color: var(--secondary); }
+.btn-kill:hover { background: var(--secondary); color: #000; }
 
 /* ========================================================================= */
 /* BOSS ARENA FULL-SCREEN (EPIC LAYOUT)                                      */
