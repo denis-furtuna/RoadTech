@@ -3,91 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Road Tech - Infinite Knowledge Engine</title>
+    <title>Road Tech | Infinite Learning RPG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="crt-overlay"></div>
+    <header class="glass-header">
+        <div class="logo">ROAD TECH</div>
+        <nav>
+            <a href="#engine" class="nav-link">The Engine</a>
+            <a href="#gameplay" class="nav-link">Gameplay</a>
+            <a href="#download" class="cta-button">INITIATE QUEST</a>
+        </nav>
+    </header>
 
-<header>
-    <div class="logo glitch" data-text="ROAD TECH">ROAD TECH</div>
-    <nav>
-        <ul>
-            <li><a href="#how-it-works" class="pixel-btn">THE ENGINE</a></li>
-            <li><a href="#boss-arena" class="pixel-btn">THE EXAM</a></li>
-            <li><a href="#download" class="pixel-btn highlight-btn">DOWNLOAD</a></li>
-        </ul>
-    </nav>
-</header>
-
-<main>
     <section class="hero">
+        <div class="hero-background"></div>
         <div class="hero-content">
-            <h1 class="glitch-title" data-text="MASTER ANY SUBJECT">MASTER ANY SUBJECT</h1>
-            <p class="subtitle">Wikipedia API + AI Engine + 16-Bit RPG</p>
+            <div class="badge">Powered by AI & Wikipedia API</div>
+            <h1 class="title">Master <span class="gradient-text">Any Subject</span><br>in the Universe.</h1>
+            <p class="subtitle">Enter a topic. Select your age. Let our intelligent engine forge a custom 16-bit RPG quest tailored exactly to your level of understanding.</p>
             
-            <div class="hero-menu-container">
-                <img src="Assets/images/usi/sprite_sheet_menu.png" alt="Menu" class="hero-menu pulse-anim">
+            <div class="hero-visual-container">
+                <img src="Assets/images/usi/sprite_sheet_menu.png" alt="What do you want to learn?" class="floating-menu">
             </div>
-            <a href="#boss-arena" class="pixel-btn start-btn">INITIATE QUEST</a>
         </div>
     </section>
 
-    <section id="how-it-works" class="engine-section">
-        <h2 class="section-title">ZERO HALLUCINATIONS. PURE FACTS.</h2>
-        <div class="pipeline-grid">
+    <section id="engine" class="engine-section">
+        <div class="container">
+            <h2 class="section-heading">How The Magic Works</h2>
             
-            <div class="pipeline-step pixel-box">
-                <div class="sprite-anim player-thinking"></div>
-                <h3>1. THE REQUEST</h3>
-                <p>Choose ANY topic and set your age group.</p>
-            </div>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="card-icon">
+                        <div class="player-thinking-anim"></div>
+                    </div>
+                    <h3>1. The Request</h3>
+                    <p>You choose the battlefield. From Quantum Physics to Ancient Rome, input any topic and your age. Our system prepares the extraction.</p>
+                </div>
 
-            <div class="circuit-arrow">►►►</div>
+                <div class="feature-card glass-card">
+                    <div class="card-icon static-icon">
+                        <img src="Assets/quiz/cufar.png" alt="Chest">
+                    </div>
+                    <h3>2. The Extraction</h3>
+                    <p>We connect directly to Wikipedia's API, pulling 100% verified, real-world data. No hallucinations, just pure facts.</p>
+                </div>
 
-            <div class="pipeline-step pixel-box">
-                <div class="sprite-anim chest-idle"></div>
-                <h3>2. THE EXTRACTION</h3>
-                <p>Real-time Wikipedia API connection for 100% verified facts.</p>
-            </div>
-
-            <div class="circuit-arrow">►►►</div>
-
-            <div class="pipeline-step pixel-box">
-                <div class="sprite-anim book-scrolling"></div>
-                <h3>3. THE AI FORGE</h3>
-                <p>Data transformed into 6 interactive chapters & strict quizzes.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="boss-arena" class="boss-section">
-        <h2 class="section-title text-red" style="position: relative; z-index: 10;">THE FINAL EXAM</h2>
-        
-        <div class="arena-stage">
-            
-            <div id="dragon-container" class="sprite-anim dragon-idle"></div>
-            
-            <div id="player-death-container" class="sprite-anim player-ash hidden"></div>
-
-            <div class="combat-ui">
-                <p class="combat-text">ARE YOU READY TO FACE THE FIRE?</p>
-                <div class="combat-buttons">
-                    <button id="btn-correct" class="pixel-btn btn-attack">CORRECT ANSWER</button>
-                    <button id="btn-wrong" class="pixel-btn btn-defend">WRONG ANSWER</button>
-                    <button id="btn-kill" class="pixel-btn btn-kill">FINAL BLOW</button> 
+                <div class="feature-card glass-card">
+                    <div class="card-icon static-icon">
+                        <img src="Assets/carte/32p_Book.png" alt="Book">
+                    </div>
+                    <h3>3. The AI Forge</h3>
+                    <p>Our AI structures the raw data into 6 interactive chapters, generating strict, context-aware quizzes for you to solve.</p>
                 </div>
             </div>
         </div>
     </section>
-</main>
 
-<footer>
-    <p>Road Tech &copy; 2026. Designed for the Future, Rendered in the Past.</p>
-</footer>
+    <section id="gameplay" class="showcase-section">
+        <div class="container">
+            <div class="showcase-row">
+                <div class="showcase-text">
+                    <h2 class="section-heading left-align">Read. Think. Survive.</h2>
+                    <p>Explore the facility, unlock chests, and read the classified documents. Every quiz you face is strictly derived from the material you just read. If it's not in the text, it won't be in the test.</p>
+                </div>
+                <div class="showcase-image glass-card">
+                    <img src="Assets/images/Final boss/arena.png" alt="Boss Arena">
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script src="script.js"></script>
+    <footer class="site-footer">
+        <div class="logo">ROAD TECH</div>
+        <p>&copy; 2026. The Infinite Knowledge Engine.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
