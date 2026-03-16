@@ -1,369 +1,192 @@
-/* --- ÎNCĂRCAREA FONTULUI TĂU REAL --- */
+/* --- SETĂRI GENERALE ȘI FONTURI --- */
 @font-face {
     font-family: 'Minecraftia';
     src: url('Assets/Minecraftia-Regular.ttf') format('truetype');
 }
 
 :root {
-    --bg-color: #050505;
-    --primary: #FF8800; 
-    --secondary: #FFFF00; 
-    --danger: #FF0000; 
-    --text-main: #FFFFFF;
+    --bg-dark: #09090b;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #f59e0b; /* Portocaliu elegant */
+    --accent-glow: rgba(245, 158, 11, 0.3);
 }
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
 body {
-    margin: 0;
-    background-color: var(--bg-color);
+    background-color: var(--bg-dark);
     color: var(--text-main);
-    font-family: 'Minecraftia', monospace; /* Folosim fontul tău! */
+    font-family: 'Outfit', sans-serif; /* Font modern pentru citit */
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* OVERLAY CRT MULT MAI BUN (Cu animație de flicker) */
-.crt-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 4px, 3px 100%;
-    z-index: 9999;
-    pointer-events: none;
-    animation: flicker 0.15s infinite;
-}
-
-@keyframes flicker {
-    0% { opacity: 0.95; }
-    50% { opacity: 0.85; }
-    100% { opacity: 0.95; }
-}
-
-/* EFECT GLITCH PENTRU TITLURI (WOW FACTOR) */
-.glitch {
-    position: relative;
-    color: var(--primary);
-    font-size: 32px;
-}
-.glitch::before, .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-color);
-}
-.glitch::before {
-    left: 2px;
-    text-shadow: -2px 0 red;
-    clip: rect(24px, 550px, 90px, 0);
-    animation: glitch-anim 3s infinite linear alternate-reverse;
-}
-.glitch::after {
-    left: -2px;
-    text-shadow: -2px 0 blue;
-    clip: rect(85px, 550px, 140px, 0);
-    animation: glitch-anim 2.5s infinite linear alternate-reverse;
-}
-@keyframes glitch-anim {
-    0% { clip: rect(20px, 9999px, 99px, 0); }
-    20% { clip: rect(40px, 9999px, 20px, 0); }
-    40% { clip: rect(80px, 9999px, 50px, 0); }
-    60% { clip: rect(10px, 9999px, 80px, 0); }
-    80% { clip: rect(90px, 9999px, 30px, 0); }
-    100% { clip: rect(30px, 9999px, 100px, 0); }
-}
-
-/* STILURI GENERALE */
-.text-red { color: var(--danger); text-shadow: 2px 2px 0px #550000; }
-.section-title { text-align: center; font-size: 36px; margin-bottom: 50px; text-shadow: 4px 4px 0px #000; }
-
-/* BUTOANE */
-.pixel-btn {
-    background: #222;
-    border: 4px solid var(--text-main);
-    color: var(--text-main);
-    padding: 15px 25px;
+/* Fontul retro aplicat DOAR pe elemente cheie */
+h1, h2, h3, .logo, .cta-button, .badge {
     font-family: 'Minecraftia', monospace;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: inset -4px -4px 0px rgba(0,0,0,0.5), 6px 6px 0px #000;
-    transition: all 0.1s;
-    text-decoration: none;
-    display: inline-block;
-    text-transform: uppercase;
+    font-weight: normal;
 }
-.pixel-btn:hover {
-    background: var(--primary);
-    border-color: var(--secondary);
-    transform: translateY(-4px);
-    box-shadow: inset -4px -4px 0px rgba(0,0,0,0.3), 10px 10px 0px #000;
+
+/* --- EFECTE DE STICLĂ (GLASSMORPHISM) --- */
+.glass-header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 5%;
+    background: rgba(9, 9, 11, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-glass);
+    z-index: 1000;
+}
+
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(245, 158, 11, 0.4); /* Glow portocaliu la hover */
+}
+
+/* --- NAVIGARE --- */
+.logo { font-size: 20px; color: var(--text-main); letter-spacing: 1px; }
+nav { display: flex; gap: 30px; align-items: center; }
+.nav-link { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+.nav-link:hover { color: var(--text-main); }
+
+.cta-button {
+    background: var(--accent);
     color: #000;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px var(--accent-glow);
 }
-.pixel-btn:active {
-    transform: translateY(2px);
-    box-shadow: inset -4px -4px 0px rgba(0,0,0,0.5), 2px 2px 0px #000;
+.cta-button:hover {
+    background: #fbbf24;
+    box-shadow: 0 0 25px var(--accent-glow);
+    transform: scale(1.05);
 }
-.highlight-btn { background: var(--danger); }
 
-/* HEADER */
-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #111; border-bottom: 4px solid var(--primary); }
-nav ul { display: flex; gap: 20px; list-style: none; }
-
-/* HERO SECTION */
+/* --- HERO SECTION --- */
 .hero {
-    min-height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: url('Assets/images/Tiles/Autotiles walls.png') repeat; /* Fundal retro */
-    background-size: 64px;
-    box-shadow: inset 0 0 100px 50px var(--bg-color);
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding-top: 80px;
+    overflow: hidden;
 }
-.hero-content { background: rgba(0,0,0,0.8); padding: 50px; border: 4px solid var(--primary); }
-.glitch-title { font-size: 48px; color: var(--secondary); margin-bottom: 10px; }
-.subtitle { color: #aaa; font-size: 18px; margin-bottom: 40px; }
-.hero-menu { max-width: 400px; margin-bottom: 30px; image-rendering: pixelated; }
-.pulse-anim { animation: pulse 2s infinite alternate; }
-@keyframes pulse { 0% { filter: drop-shadow(0 0 10px var(--primary)); transform: scale(1); } 100% { filter: drop-shadow(0 0 25px var(--secondary)); transform: scale(1.05); } }
+/* Fundal blurat foarte elegant */
+.hero-background {
+    position: absolute;
+    top: -20%; left: -10%; width: 120%; height: 120%;
+    background: radial-gradient(circle at center, rgba(245, 158, 11, 0.1) 0%, var(--bg-dark) 60%),
+                url('Assets/images/Tiles/Autotiles walls.png');
+    background-size: 128px;
+    opacity: 0.3;
+    z-index: -1;
+}
 
-/* PIPELINE GRID */
-.engine-section { padding: 100px 20px; background: #0a0a0a; }
-.pipeline-grid { display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; }
-.pixel-box {
-    border: 4px solid #444;
-    background: #111;
-    padding: 30px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 8px 8px 0px #000;
+.hero-content { text-align: center; max-width: 800px; padding: 0 20px; z-index: 1; }
+
+.badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    border-radius: 50px;
+    font-size: 10px;
+    color: var(--accent);
+    margin-bottom: 30px;
+    letter-spacing: 1px;
 }
-.circuit-arrow { font-size: 32px; color: var(--primary); animation: move-arrow 1s infinite steps(2); }
-@keyframes move-arrow { 0% { transform: translateX(0); } 100% { transform: translateX(10px); } }
+
+.title {
+    font-size: 48px; line-height: 1.2; margin-bottom: 24px; text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+.gradient-text {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 18px; color: var(--text-muted); margin-bottom: 50px; font-weight: 300; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+
+.hero-visual-container { margin-top: 40px; perspective: 1000px; }
+.floating-menu {
+    max-width: 350px; width: 100%; image-rendering: pixelated;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.7));
+    animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+    0% { transform: translateY(0px) rotateX(5deg); }
+    50% { transform: translateY(-15px) rotateX(0deg); }
+    100% { transform: translateY(0px) rotateX(5deg); }
+}
+
+/* --- THE ENGINE (Unde e Player-ul) --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.engine-section { padding: 120px 0; position: relative; }
+.section-heading { font-size: 32px; text-align: center; margin-bottom: 60px; color: var(--text-main); }
+.left-align { text-align: left; }
+
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.feature-card { padding: 40px 30px; text-align: center; }
+.feature-card h3 { font-size: 18px; color: var(--accent); margin-bottom: 16px; }
+.feature-card p { color: var(--text-muted); font-size: 15px; }
+
+.card-icon { height: 100px; display: flex; justify-content: center; align-items: center; margin-bottom: 30px; }
+.static-icon img { height: 80px; image-rendering: pixelated; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); }
 
 /* ========================================================================= */
-/* 💥 MOTORUL DE ANIMAȚIE SPRITE SHEETS (MATRICE AVANSATĂ) 💥                */
+/* 💥 ANIMAȚIA PLAYER-ULUI (Perfect Calculată) 💥                            */
+/* Imaginea are 2 coloane, 1 rând.                                           */
 /* ========================================================================= */
-
-.sprite-anim {
-    background-repeat: no-repeat;
-    image-rendering: pixelated; 
-    margin: 0 auto 20px auto;
-}
-
-/* ------------------------------------------------------------------------- */
-/* 1. PLAYER SCRATCHING (2 coloane, 1 linie) */
-/* ------------------------------------------------------------------------- */
-.player-thinking {
-    width: 128px; height: 128px; /* Mărimea unui cadru pe ecran */
+.player-thinking-anim {
+    width: 64px; /* O facem decentă ca mărime */
+    height: 64px;
     background-image: url('Assets/images/player/sprite_sheet_scratching.png');
-    background-size: 256px 128px; /* 2 col x 128px = 256px lățime totală */
-    animation: play-player-x 1s steps(2) infinite;
-}
-@keyframes play-player-x { 
-    to { background-position-x: -256px; } 
-}
-
-/* ------------------------------------------------------------------------- */
-/* 2. PLAYER TURNED TO ASH (O singură poză) */
-/* ------------------------------------------------------------------------- */
-.player-ash {
-    width: 128px; height: 128px;
-    background-image: url('Assets/images/player/Turned_to_ash.png');
-    background-size: cover;
-}
-
-/* ------------------------------------------------------------------------- */
-/* 3. CARTEA (Să zicem 2 coloane, 4 linii = 8 pași) */
-/* ------------------------------------------------------------------------- */
-.book-scrolling {
-    width: 128px; height: 128px;
-    background-image: url('Assets/carte/sprite_sheet_book.png');
-    background-size: 256px 512px; /* 2 col x 128px lățime | 4 linii x 128px înălțime */
-    
-    /* DECLANȘĂM X și Y! X merge rapid stânga-dreapta, Y coboară un rând! */
-    animation: 
-        play-book-x 0.5s steps(2) infinite, 
-        play-book-y 2s steps(4) infinite; 
-}
-@keyframes play-book-x { to { background-position-x: -256px; } }
-@keyframes play-book-y { to { background-position-y: -512px; } }
-
-/* ------------------------------------------------------------------------- */
-/* 4. DRAGON FIRE (Idle) (3 coloane, 3 linii) */
-/* ------------------------------------------------------------------------- */
-.dragon-idle {
-    width: 256px; height: 256px; /* Dragonul e mai mare! */
-    background-image: url('Assets/images/Final boss/sprite_sheet_final_boss.png');
-    background-size: 768px 768px; /* 3 col x 256px = 768px | 3 linii x 256px = 768px */
-    
-    animation: 
-        play-dragon-x-3 0.6s steps(3) infinite, 
-        play-dragon-y-3 1.8s steps(3) infinite;
-}
-
-/* ------------------------------------------------------------------------- */
-/* 5. DRAGON DAMAGE (3 coloane, 2 linii) */
-/* ------------------------------------------------------------------------- */
-.dragon-hurt {
-    width: 256px; height: 256px;
-    background-image: url('Assets/images/Final boss/sprite_sheet_damage(1).png');
-    background-size: 768px 512px; /* 3 col x 256 = 768 | 2 linii x 256 = 512 */
-    
-    animation: 
-        play-dragon-x-3 0.6s steps(3) infinite, 
-        play-dragon-y-2 1.2s steps(2) infinite;
-    
-    filter: brightness(1.5) sepia(1) hue-rotate(-50deg) saturate(5); /* Îl facem să clipească roșu! */
-}
-
-/* ------------------------------------------------------------------------- */
-/* 6. DRAGON DEATH (2 coloane, 1 linie) */
-/* ------------------------------------------------------------------------- */
-.dragon-death {
-    width: 256px; height: 256px;
-    background-image: url('Assets/images/Final boss/sprite_sheet_dragon_death.png');
-    background-size: 512px 256px; /* 2 col x 256 = 512 */
-    
-    /* Animația NU e infinită la moarte! Se oprește la ultimul cadru (forwards) */
-    animation: play-dragon-x-2 1s steps(2) forwards;
-}
-
-/* KEYFRAMES PENTRU DRAGON (Reutilizabile) */
-@keyframes play-dragon-x-2 { to { background-position-x: -512px; } }
-@keyframes play-dragon-x-3 { to { background-position-x: -768px; } }
-@keyframes play-dragon-y-2 { to { background-position-y: -512px; } }
-@keyframes play-dragon-y-3 { to { background-position-y: -768px; } }
-
-
-/* ========================================================================= */
-/* BOSS ARENA FULL-SCREEN (EPIC LAYOUT)                                      */
-/* ========================================================================= */
-.boss-section { padding: 50px 0; background: #000; }
-.arena-stage {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    height: 600px;
-    margin: 0 auto;
-    background: url('Assets/images/Final boss/arena.png') center/cover no-repeat;
+    background-size: 128px 64px; /* Lățime totală 128 (2x64), înălțime 64 */
     image-rendering: pixelated;
-    border: 8px solid #333;
-    box-shadow: 0 0 50px var(--danger);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    overflow: hidden;
+    animation: play-scratch 0.8s steps(2) infinite;
+    transform: scale(1.5); /* O mărim din CSS ca să rămână sharp */
+}
+@keyframes play-scratch {
+    0% { background-position: 0px 0; }
+    100% { background-position: -128px 0; }
 }
 
-/* Container Dragon */
-#dragon-container {
-    position: absolute;
-    bottom: 150px;
-    transform: scale(1.5); /* Îl facem gigant */
+/* --- SHOWCASE SECTION --- */
+.showcase-section { padding: 80px 0 120px; }
+.showcase-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.showcase-text p { font-size: 18px; color: var(--text-muted); margin-bottom: 24px; }
+.showcase-image { padding: 10px; border-radius: 12px; overflow: hidden; }
+.showcase-image img { width: 100%; height: auto; border-radius: 8px; image-rendering: pixelated; display: block; }
+
+@media (max-width: 768px) {
+    .showcase-row { grid-template-columns: 1fr; }
+    .title { font-size: 36px; }
+    nav { display: none; } /* Ascundem meniul pe mobil pt simplitate */
 }
 
-/* Container Player Ash */
-#player-death-container {
-    position: absolute;
-    bottom: 50px; left: 100px;
-    transform: scale(2);
+/* --- FOOTER --- */
+.site-footer {
+    text-align: center; padding: 40px 20px;
+    border-top: 1px solid var(--border-glass);
+    background: rgba(0,0,0,0.5);
 }
-.hidden { display: none !important; }
-
-/* INTERFAȚA DE LUPTĂ */
-.combat-ui {
-    background: rgba(0,0,0,0.85);
-    width: 100%;
-    padding: 20px;
-    border-top: 4px solid var(--primary);
-    text-align: center;
-    z-index: 10;
-}
-.combat-text { font-size: 20px; margin-bottom: 20px; color: #FFF; text-shadow: 2px 2px 0 #000; }
-.combat-buttons { display: flex; justify-content: center; gap: 20px; }
-.btn-attack { border-color: #00FF00; color: #00FF00; }
-.btn-attack:hover { background: #00FF00; color: #000; }
-.btn-defend { border-color: var(--danger); color: var(--danger); }
-.btn-defend:hover { background: var(--danger); color: #000; }
-.btn-kill { border-color: var(--secondary); color: var(--secondary); }
-.btn-kill:hover { background: var(--secondary); color: #000; }
-
-/* ========================================================================= */
-/* BOSS ARENA FULL-SCREEN (EPIC LAYOUT)                                      */
-/* ========================================================================= */
-.boss-section { padding: 50px 0; background: #000; }
-.arena-stage {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    height: 600px;
-    margin: 0 auto;
-    /* FOLOSIM FUNDALUL TĂU DE ARENĂ */
-    background: url('Assets/images/Final boss/arena.png') center/cover no-repeat;
-    image-rendering: pixelated;
-    border: 8px solid #333;
-    box-shadow: 0 0 50px var(--danger);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    overflow: hidden;
-}
-
-/* DRAGONUL - Dimensiuni mai mari */
-#dragon-container {
-    width: 256px; 
-    height: 256px;
-    position: absolute;
-    bottom: 150px;
-    transform: scale(1.5); /* Îl facem gigant */
-}
-
-/* Starea 1: Dragon Idle / Flăcări */
-.dragon-idle {
-    background-image: url('Assets/images/Final boss/sprite_sheet_final_boss.png');
-    /* Presupunem că are 6 frame-uri a câte 256px lățime = 1536px */
-    background-size: 1536px 256px;
-    animation: play-dragon-idle 1s steps(6) infinite;
-}
-@keyframes play-dragon-idle { 0% { background-position: 0px 0; } 100% { background-position: -1536px 0; } }
-
-/* Starea 2: Dragon Hurt */
-.dragon-hurt {
-    background-image: url('Assets/images/Final boss/sprite_sheet_damage(1).png');
-    background-size: 768px 256px; /* Să zicem 3 frame-uri */
-    animation: play-dragon-hurt 0.5s steps(3) infinite;
-    filter: sepia(1) hue-rotate(-50deg) saturate(5); /* Îl facem să sclipească roșu când ia damage */
-}
-@keyframes play-dragon-hurt { 0% { background-position: 0px 0; } 100% { background-position: -768px 0; } }
-
-/* Starea 3: Player Moare (Ash) */
-#player-death-container {
-    width: 128px; height: 128px;
-    position: absolute;
-    bottom: 50px; left: 100px;
-    transform: scale(2);
-}
-.player-ash {
-    background-image: url('Assets/images/player/Turned_to_ash.png');
-    background-size: cover; /* Dacă e doar o imagine statică */
-}
-.hidden { display: none !important; }
-
-/* INTERFAȚA DE LUPTĂ (Partea de jos a arenei) */
-.combat-ui {
-    background: rgba(0,0,0,0.85);
-    width: 100%;
-    padding: 20px;
-    border-top: 4px solid var(--primary);
-    text-align: center;
-    z-index: 10;
-}
-.combat-text { font-size: 20px; margin-bottom: 20px; color: #FFF; text-shadow: 2px 2px 0 #000; }
-.combat-buttons { display: flex; justify-content: center; gap: 20px; }
-.btn-attack { border-color: #00FF00; color: #00FF00; }
-.btn-attack:hover { background: #00FF00; color: #000; }
-.btn-defend { border-color: var(--danger); color: var(--danger); }
-.btn-defend:hover { background: var(--danger); color: #000; }
+.site-footer .logo { margin-bottom: 10px; color: #555; }
+.site-footer p { color: #555; font-size: 12px; font-family: 'Outfit', sans-serif; }
