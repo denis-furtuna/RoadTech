@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Road Tech - The Infinite Knowledge Engine</title>
+    <title>Road Tech - Infinite Knowledge Engine</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="crt-overlay"></div>
 
 <header>
-    <div class="logo">ROAD TECH</div>
+    <div class="logo glitch" data-text="ROAD TECH">ROAD TECH</div>
     <nav>
         <ul>
             <li><a href="#how-it-works" class="pixel-btn">THE ENGINE</a></li>
@@ -25,12 +24,13 @@
 <main>
     <section class="hero">
         <div class="hero-content">
-            <h1>MASTER <span class="text-neon">ANY SUBJECT</span> IN THE UNIVERSE.</h1>
-            <p>Type a topic. Select your age. Let our Wikipedia-API & AI Engine forge a custom 16-bit RPG quest just for you.</p>
+            <h1 class="glitch-title" data-text="MASTER ANY SUBJECT">MASTER ANY SUBJECT</h1>
+            <p class="subtitle">Wikipedia API + AI Engine + 16-Bit RPG</p>
             
-            <div class="start-scroll-container">
-                <img src="path/to/menu_scroll.png" alt="What do you want to learn?" class="hero-scroll">
+            <div class="hero-menu-container">
+                <img src="Assets/images/usi/sprite_sheet_menu.png" alt="Menu" class="hero-menu pulse-anim">
             </div>
+            <a href="#boss-arena" class="pixel-btn start-btn">INITIATE QUEST</a>
         </div>
     </section>
 
@@ -39,41 +39,44 @@
         <div class="pipeline-grid">
             
             <div class="pipeline-step pixel-box">
-                <img src="path/to/player_thinking.gif" alt="Player thinking" class="pixel-art-anim">
+                <div class="sprite-anim player-thinking"></div>
                 <h3>1. THE REQUEST</h3>
-                <p>Choose ANY topic (History, Math, Biology) and set your age group.</p>
+                <p>Choose ANY topic and set your age group.</p>
             </div>
 
             <div class="circuit-arrow">►►►</div>
 
             <div class="pipeline-step pixel-box">
-                <div class="icon-server">🌐</div>
+                <div class="sprite-anim chest-idle"></div>
                 <h3>2. THE EXTRACTION</h3>
-                <p>Our server connects to Wikipedia in real-time to pull 100% verified, factual data.</p>
+                <p>Real-time Wikipedia API connection for 100% verified facts.</p>
             </div>
 
             <div class="circuit-arrow">►►►</div>
 
             <div class="pipeline-step pixel-box">
-                <img src="path/to/book_scroll.gif" alt="Book scrolling" class="pixel-art-anim">
+                <div class="sprite-anim book-scrolling"></div>
                 <h3>3. THE AI FORGE</h3>
-                <p>The AI structures the raw data into exactly 6 interactive chapters and generates strict, text-based quizzes.</p>
+                <p>Data transformed into 6 interactive chapters & strict quizzes.</p>
             </div>
 
         </div>
     </section>
 
     <section id="boss-arena" class="boss-section">
-        <div class="boss-container pixel-box">
-            <h2 class="section-title text-red">THE FINAL EXAM</h2>
-            <p>Read the 6 chapters. Unlock the chests. Then, face the Dragon in a final test of knowledge.</p>
+        <h2 class="section-title text-red" style="position: relative; z-index: 10;">THE FINAL EXAM</h2>
+        
+        <div class="arena-stage">
             
-            <div class="interactive-arena">
-                <img id="dragon-anim" src="path/to/dragon_fire.gif" alt="Dragon Breathing Fire" class="dragon-main">
-                
+            <div id="dragon-container" class="sprite-anim dragon-idle"></div>
+            
+            <div id="player-death-container" class="sprite-anim player-ash hidden"></div>
+
+            <div class="combat-ui">
+                <p class="combat-text">ARE YOU READY TO FACE THE FIRE?</p>
                 <div class="combat-buttons">
-                    <button id="btn-correct" class="pixel-btn btn-attack">ANSWER CORRECTLY</button>
-                    <button id="btn-wrong" class="pixel-btn btn-defend">ANSWER WRONGLY</button>
+                    <button id="btn-correct" class="pixel-btn btn-attack">CORRECT ANSWER</button>
+                    <button id="btn-wrong" class="pixel-btn btn-defend">WRONG ANSWER</button>
                 </div>
             </div>
         </div>
@@ -81,7 +84,7 @@
 </main>
 
 <footer>
-    <p>Road Tech &copy; 2026. The Infinite Learning Engine.</p>
+    <p>Road Tech &copy; 2026. Designed for the Future, Rendered in the Past.</p>
 </footer>
 
 <script src="script.js"></script>
