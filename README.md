@@ -1,58 +1,57 @@
 # 🗡️ ROAD TECH: The Infinite Knowledge Engine 🧠
 
-![Road Tech Banner](https://img.shields.io/badge/Status-Active_Deployment-00FF00?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active_Deployment-00FF00?style=for-the-badge)
 ![Godot Engine](https://img.shields.io/badge/Godot_4.x-478CBF?style=for-the-badge&logo=godotengine&logoColor=white)
-![Python Backend](https://img.shields.io/badge/Python_FastAPI-009688?style=for-the-badge&logo=python&logoColor=white)
 ![AI Powered](https://img.shields.io/badge/Groq_Llama_3.1-FF8800?style=for-the-badge)
 
 > **"Read. Think. Survive. Master any subject in the universe through trial by fire."**
 
-**Road Tech** is not just a game; it is an infinitely scalable 16-bit educational RPG. Instead of hardcoding boring questions, this engine uses a custom Python backend to pull real-time, verified data from the **Wikipedia API**, processes it through an **AI Engine (Llama 3.1)**, and forges a unique, age-adapted quest on the spot.
+**Road Tech** is an infinitely scalable 16-bit educational RPG. Instead of hardcoding static questions, this engine pulls real-time, verified data from the **Wikipedia API**, processes it through an **AI Engine (Llama 3.1)**, and forges a unique, age-adapted quest on the spot.
 
 Zero hallucinations. Pure facts. Brutal boss fights.
 
 ---
 
-## 🚀 THE PIPELINE (How it works)
+## 🚀 THE ARCHITECTURE (Two-Part System)
 
-1. **The Request:** The player inputs ANY topic (e.g., "Quantum Physics", "Ancient Rome") and their age group.
-2. **The Extraction:** Our Python API raids Wikipedia for 100% factual, verified text. 
-3. **The AI Forge:** The AI structures the raw text into EXACTLY 6 interactive chapters and generates strict, context-bound multiple-choice quizzes.
-4. **The Execution:** The player explores the Godot frontend, reads the generated chapters from chests, and proves their knowledge to survive.
+This project is split into a Front-End client (Godot/Web) and a custom Python API.
+
+* **🎮 The Frontline (This Repository):** Contains the Godot 4 project, UI assets, HTML5 exports, and the pixel-art website. 
+* **⚙️ The Command Center (Backend API):** The brain of the operation. A FastAPI server that handles Wikipedia scraping and AI prompt engineering.
 
 ---
 
 ## ⚔️ CORE FEATURES
 
 * **Infinite Replayability:** Learn literally anything. If it's on Wikipedia, you can fight a dragon over it.
-* **Adaptive Difficulty:** The AI adjusts vocabulary, complexity, and quiz difficulty based on the player's selected age group (from 7-10 years old to University Level).
-* **Strict Source-Bound Quizzes:** The AI is strictly ordered to *never* use outside knowledge. Quizzes are generated EXCLUSIVELY from the text the player just read. No trick questions.
-* **Epic Boss Battles:** Face the Final Dragon in an arena where mathematical equations and historical facts are your only weapons. Answer correctly to deal critical damage; answer wrongly and get atomized.
-* **Premium 16-Bit Aesthetic:** CRT scanlines, custom sprite sheets, and high-octane pixel art animations.
+* **Adaptive Difficulty:** The AI adjusts vocabulary and quiz difficulty based on the player's selected age group.
+* **Strict Source-Bound Quizzes:** Quizzes are generated EXCLUSIVELY from the text the player just read. No outside knowledge allowed.
+* **Epic Boss Battles:** Face the Final Dragon in an arena where mathematical equations and historical facts are your only weapons.
 
 ---
 
-## 🛠️ TECH STACK
+## 🛠️ DEPLOYMENT INSTRUCTIONS
 
-### 🎮 Frontend (The Frontline)
-* **Engine:** Godot 4.x
-* **Language:** GDScript
-* **UI/UX:** Custom pixel-art sprite sheets, animated via CSS/Godot AnimationPlayers.
+To run the complete Road Tech ecosystem locally, you must boot both the Backend and the Frontend.
 
-### ⚙️ Backend (The Command Center)
-* **Framework:** Python + FastAPI
-* **Data Source:** Wikipedia API
-* **AI Provider:** Groq API (Llama-3.1-8b-instant)
-* **Architecture:** Strictly prompt-engineered to enforce JSON-only outputs, zero prefixes, and English-only generation via System Roles.
-
----
-
-## ⚙️ DEPLOYMENT INSTRUCTIONS
-
-Want to run the base on your local machine? Follow these orders:
-
-### 1. Boot up the Backend (Python)
-1. Navigate to the backend directory.
-2. Install the heavy artillery:
+### STEP 1: Boot the AI Backend
+1. Clone the Backend Repository *(Link your backend repo here)*.
+2. Install the required artillery:
    ```bash
-   pip install fastapi uvicorn requests python-dotenv
+   pip install -r requirements.txt
+
+### STEP 2: Environment Setup
+To keep your API keys secure and configure the environment:
+1. In the `RoadTech-Backend` folder, create a new file named `.env`.
+2. Open `.env` and add your Groq API key:
+   ```env
+   GROQ_API_KEY=your_actual_api_key_here
+
+### STEP 4: Start the Command Center
+Once the dependencies are installed and the environment is set up, initiate the server:
+
+Run the following command in your terminal:
+```bash
+python server.py
+
+The FastAPI backend will start running locally at http://127.0.0.1:5000. You can now connect the Godot frontend to this address to begin the quests.
