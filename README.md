@@ -35,7 +35,7 @@ This project is split into a Front-End client (Godot/Web) and a custom Python AP
 To run the complete Road Tech ecosystem locally, you must boot both the Backend and the Frontend.
 
 ### STEP 1: Boot the AI Backend
-1. Clone the Backend Repository *(Link your backend repo here)*.
+1. Navigate to the backend folder inside this repository: [Backend Folder](./backend/).
 2. Install the required artillery:
    ```bash
    pip install -r requirements.txt
